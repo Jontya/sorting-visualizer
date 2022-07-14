@@ -1,0 +1,37 @@
+html{
+    background-color: #2c2c34;
+}
+
+button{
+    all: unset;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 1vw;
+    margin-top: 1.75vh;
+    color: #F8F8FF;
+    border-radius: 8px;
+    background-color: #424463;
+}
+
+.parent-container{
+    margin-top: 125px;
+}
+
+.array-container{
+    height: 76vh;
+    margin-top: 125px;
+    width: 100vw;
+}
+
+.button-container{
+    height: 10vh;
+}
+
+.array-bar{
+   width: 2px;
+   background-color: #C0C0C0;
+   display: inline-block;
+   margin: 0 1px;
+}
+
