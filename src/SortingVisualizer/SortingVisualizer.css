@@ -14,13 +14,10 @@ button{
     background-color: #424463;
 }
 
-.parent-container{
-    margin-top: 125px;
-}
 
 .array-container{
-    height: 76vh;
-    margin-top: 125px;
+    margin-top: 50px;
+    height: 76.84vh;
     width: 100vw;
 }
 
@@ -29,9 +26,9 @@ button{
 }
 
 .array-bar{
-   width: 2px;
-   background-color: #C0C0C0;
-   display: inline-block;
-   margin: 0 1px;
+    width: 2px;
+    background-color: #C0C0C0;
+    display: inline-block;
+    margin: 0 1px;
 }
 
