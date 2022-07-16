@@ -5,9 +5,6 @@ import {heapSortAnimations} from "../SortingAlgorithms/HeapSort.js";
 import {bubbleSortAnimations} from "../SortingAlgorithms/BubbleSort.js";
 import "./SortingVisualizer.css";
 
-// Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 1;
-
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 240;
 
