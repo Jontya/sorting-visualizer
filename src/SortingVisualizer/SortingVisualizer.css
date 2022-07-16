@@ -1,34 +1,35 @@
 html{
-    background-color: #2c2c34;
+    font-size: 1em;
+    background-color: #252a34;
+    color: #F8F8FF;
 }
 
 button{
     all: unset;
     cursor: pointer;
     padding: 10px;
-    font-size: 16px;
-    margin-right: 1vw;
-    margin-top: 1.75vh;
-    color: #F8F8FF;
-    border-radius: 8px;
+    margin-left: 1vw;
+    margin-top: 1vh;
+    border-radius: 0.3em;
     background-color: #424463;
+}
+
+.button-container{
+    height: 3.5em;
+    margin-top: 1vh;
 }
 
 
 .array-container{
     margin-top: 50px;
-    height: 76.84vh;
-    width: 100vw;
+    height: 63.15vh;
 }
 
-.button-container{
-    height: 10vh;
-}
 
 .array-bar{
-    width: 2px;
-    background-color: #C0C0C0;
-    display: inline-block;
-    margin: 0 1px;
+   width: 3px;
+   background-color: #C0C0C0;
+   display: inline-block;
+   margin: 0 1px;
 }
 
