@@ -1,5 +1,8 @@
 import React from "react";
-import {mergeSortAnimations} from "../sortingAlgorithms/sortingAlgorithms.js";
+import {mergeSortAnimations} from "../SortingAlgorithms/MergeSort.js";
+import {quickSortAnimations} from "../SortingAlgorithms/QuickSort.js";
+import {heapSortAnimations} from "../SortingAlgorithms/HeapSort.js";
+import {bubbleSortAnimations} from "../SortingAlgorithms/BubbleSort.js";
 import "./SortingVisualizer.css";
 
 // Change this value for the speed of the animations.
@@ -13,6 +16,8 @@ const PRIMARY_COLOR = "#C0C0C0";
 
 // This is the color of array bars that are being compared throughout the animations.
 const SECONDARY_COLOR = 'red';
+
+let sorted = false;
 
 export default class SortingVisualizer extends React.Component{
     constructor(props){
@@ -32,44 +37,14 @@ export default class SortingVisualizer extends React.Component{
         for(let i = 0; i < NUMBER_OF_ARRAY_BARS; i++){
             array.push(randomIntFromInterval(5, 730));
         }
+        sorted = false;
         this.setState({array});
     }
 
     mergeSort(){
-        const animations = mergeSortAnimations(this.state.array);
-    for (let i = 0; i < animations.length; i++) {
-      const arrayBars = document.getElementsByClassName('array-bar');
-      const isColorChange = i % 3 !== 2;
-      if (isColorChange) {
-        const [barOneIdx, barTwoIdx] = animations[i];
-        const barOneStyle = arrayBars[barOneIdx].style;
-        const barTwoStyle = arrayBars[barTwoIdx].style;
-        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
-        setTimeout(() => {
-          barOneStyle.backgroundColor = color;
-          barTwoStyle.backgroundColor = color;
-        }, i * ANIMATION_SPEED_MS);
-      } else {
-        setTimeout(() => {
-          const [barOneIdx, newHeight] = animations[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          barOneStyle.height = `${newHeight}px`;
-        }, i * ANIMATION_SPEED_MS);
-      }
-    }
+        animate(mergeSortAnimations(this.state.array), 2);
     }
 
-    quickSort(){
-        
-    }
-
-    heapSort(){
-        
-    }
-
-    bubbleSort(){
-        
-    }
 
     render(){
         const {array} = this.state;
@@ -85,15 +60,44 @@ export default class SortingVisualizer extends React.Component{
                     ))}
                 </div>
                 <div className="button-container">
-                        <button on onClick={() => this.resetArray()}>Generate New Array</button>
-                        <button onClick={() => this.mergeSort()}>Merge Sort</button>
-                        <button onClick={() => this.quickSort()}>Quick Sort</button>
-                        <button onClick={() => this.heapSort()}>Heap Sort</button>
-                        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                    <button on onClick={() => this.resetArray()}>Generate New Array</button>
+                    <button onClick={() => this.mergeSort()}>Merge Sort</button>
+                    <button onClick={() => animate(quickSortAnimations(this.state.array), 5)}>Quick Sort</button>
+                    <button onClick={() => animate(heapSortAnimations(this.state.array), 2)}>Heap Sort</button>
+                    <button onClick={() => animate(bubbleSortAnimations(this.state.array), 2)}>Bubble Sort</button>
                 </div>
             </div>
             
         );
+    }
+}
+
+function animate(animations, animationTime){
+    if(sorted == false){
+        for (let i = 0; i < animations.length; i++) {
+            const [barOneIdx, barTwoIdx, barOneHeight, barTwoHeight, colorChange] = animations[i];
+            const arrayBars = document.getElementsByClassName('array-bar');
+            const barOneStyle = arrayBars[barOneIdx].style;
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            
+            setTimeout(() => {
+                if(colorChange){
+                    barOneStyle.backgroundColor = PRIMARY_COLOR;
+                    barTwoStyle.backgroundColor = PRIMARY_COLOR;
+                }
+                else{
+                    barOneStyle.backgroundColor = SECONDARY_COLOR;
+                    barTwoStyle.backgroundColor = SECONDARY_COLOR;
+                }
+
+                barOneStyle.height = `${barTwoHeight/9.5}vh`;
+                barTwoStyle.height = `${barOneHeight/9.5}vh`;
+            }, i * animationTime);
+        }
+        sorted = true;
+    }
+    else{
+        // Already sorted drop down box
     }
 }
 
@@ -112,4 +116,5 @@ function arraysAreEqual(arr1, arr2){
     }
     return true;
 }
+
 
